@@ -38,12 +38,9 @@ console.log(numberOfSafeReports);
 
 let numberOfTrueSafeReports: number = 0;
 
-for (let i = 0; i < j; i++) {
-  const line = lines[i];
-  const numbers = line.split(" ").map((n) => Number(n));
+function isReallySafe(numbers: number[]) {
   const options: number[][] = [numbers];
   const k = numbers.length;
-  let safe: boolean = false;
   for (let i = 0; i < k; i++) {
     const opt = [...numbers];
     opt.splice(i, 1);
@@ -51,11 +48,17 @@ for (let i = 0; i < j; i++) {
   }
   for (let i = 0; i < options.length; i++) {
     if (isSafe(options[i])) {
-      safe = true;
-      break;
+      return true;
     }
   }
-  if (safe) numberOfTrueSafeReports += 1;
+}
+
+for (let i = 0; i < j; i++) {
+  const line = lines[i];
+  const numbers = line.split(" ").map((n) => Number(n));
+  if (isReallySafe(numbers)) {
+    numberOfTrueSafeReports += 1;
+  }
 }
 
 console.log(numberOfTrueSafeReports);
