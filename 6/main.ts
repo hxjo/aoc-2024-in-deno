@@ -73,6 +73,7 @@ function processNextStep(position: [Row, Col]): [Row, Col] | undefined {
     case ".": {
       newPosition = getNewPos(position);
       matrix[position[0]][position[1]] = "X";
+      nbVisited += 1;
       return newPosition;
     }
     case "#": {
@@ -96,14 +97,6 @@ function processNextStep(position: [Row, Col]): [Row, Col] | undefined {
 let currPos: [Row, Col] | undefined = [guardPosition[0] - 1, guardPosition[1]];
 while (currPos) {
   currPos = processNextStep(currPos);
-}
-
-for (const row of matrix) {
-  for (const opt of row) {
-    if (opt === "X") {
-      nbVisited += 1;
-    }
-  }
 }
 
 console.log(nbVisited);
